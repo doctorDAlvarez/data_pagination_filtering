@@ -1,0 +1,5 @@
+1) display a "page"
+  function showPage()
+      pass a [list] of student data, and a [page] number
+
+      set start and end INDEX of list.
