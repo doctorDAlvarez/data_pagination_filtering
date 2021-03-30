@@ -24,7 +24,7 @@ function showPage( list, page ) {
   ul.innerHTML = "";
   for (let i = startIndex; i <= endIndex; i++ ) {
     ul.insertAdjacentHTML( "beforeend",
-    ` <li class="student-list cf">
+    ` <li class="student-item cf">
         <div class="student-details">
           <img class="avatar" src="${list[i].picture.thumbnail}">
           <h3>${list[i].name.first} ${list[i].name.last}</h3>
