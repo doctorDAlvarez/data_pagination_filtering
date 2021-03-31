@@ -13,6 +13,7 @@ Paging and filtering databases.
 
 Just clone the repo or download the files and open index.html.
 ## API Reference
+vanilla javaScript code.
 uses MATH built-in JS.
 
 
@@ -21,4 +22,4 @@ TeamTreeHouse Full Stack JavaScript techDegree.
 HTML & CSS property of TeamTreeHouse.
 
 
-MIT © [doc]()
+TreeHouse © [doc]() on Slack.
