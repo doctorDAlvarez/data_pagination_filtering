@@ -21,7 +21,7 @@ let html_search = `
   <label for="search" class="student-search">
     <span>Search by name</span>
     <input id="search" placeholder="Search by name...">
-    <button type="button"><img src="img/icn-search.svg" alt="Search icon">
+    <button type="button" id="button"><img src="img/icn-search.svg" alt="Search icon">
       </button>
   </label>`;
 // adding the new search feature to the header.
@@ -55,13 +55,34 @@ function showPage(list, page) {
         `);
 		}
 	}
-  // - testing the search result, to choose the message to print.
-  if (list.length !== 0) {
-		studentsFound.innerHTML = `${list.length} students found.`;
-	} else {
-		studentsFound.innerHTML = "No results found";
-	}
-	studentsFound.style.margin = "6px";
+ /**
+ * Search feature handler:
+ * filtering the data array with the value of the input field (case insensitive)
+ * using the "input" event, tracking in realtime the search.
+ **/
+  const inputElem = document.getElementById("search");
+  inputElem.addEventListener("input", (e) => {
+  	let new_page = [];
+  	for (let i = 0; i < data.length; i++) {
+  		firstName = data[i].name.first.toUpperCase();
+  		lastName = data[i].name.last.toUpperCase();
+  		inputValue = inputElem.value.toUpperCase();
+  		if (firstName.includes(inputValue) || lastName.includes(inputValue)) {
+  			new_page.push(data[i]);
+  		}
+  	}
+  	showPage(new_page, 1);
+  	addPagination(new_page);
+  });
+
+  document.querySelector("#button").addEventListener("click", (e) => {
+    if (list.length === 0) {
+      studentsFound.innerHTML = "No results found";
+    } else {
+      studentsFound.innerHTML = `${list.length} students found.`;
+    }
+  	studentsFound.style.margin = "6px";
+  });
 }
 /**
 * Function: addPagination()
@@ -76,7 +97,7 @@ function addPagination(list) {
 	for (let i = 1; i <= paginationButtons; i++) {     //adding the buttons
 		ul.insertAdjacentHTML("beforeend", `
       <li>
-        <button type="button">${i}</button>
+        <button type="button">${ i }</button>
       </li>
     `);
 	}
@@ -92,24 +113,12 @@ function addPagination(list) {
 		}
 	});
 }
-const inputElem = document.getElementById("search"); //search feature handler
-inputElem.addEventListener("input", (e) => {
-	let new_page = [];
-	for (let i = 0; i < data.length; i++) {
-		firstName = data[i].name.first.toUpperCase();
-		lastName = data[i].name.last.toUpperCase();
-		inputValue = inputElem.value.toUpperCase();
-		if (firstName.includes(inputValue) || lastName.includes(inputValue)) {
-			new_page.push(data[i]);
-		}
-	}
-	ul.innerHTML = "";
-	showPage(new_page, 1);
-	addPagination(new_page);
-});
-// Call functions to display the initial page of all students on the list.
+
+// Call functions to display the initial page with the first
+// 9 students on the list.
 showPage(data, 1);
 addPagination(data);
+
 // theEnd.
 // have a nice coding day! ;) @doc
 // ----------------------------------------------------------------------------
