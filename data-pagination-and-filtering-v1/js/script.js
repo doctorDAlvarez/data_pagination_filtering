@@ -6,11 +6,11 @@
 *********************************************************
 */
 /*
- * Selecting the elements of the DOM that we plan working with.
- * The header for the search feature.
- * The ul for the list of students.
- * The div to insert our custom p tag to track students found.
- */
+* Selecting the elements of the DOM that we plan working with.
+* The header for the search feature.
+* The ul for the list of students.
+* The div to insert our custom p tag to track students found.
+*/
 const ul = document.querySelector(".student-list");
 const studentsFound = document.createElement("p");
 const header = document.querySelector(".header");
@@ -27,12 +27,13 @@ let html_search = `
 // adding the new search feature to the header.
 header.insertAdjacentHTML("beforeend", html_search);
 
+
 /**
- * Function: showPage()
- * Principal function to update the page with the matched students.
- * @param {array of objects} list - The array of students to work with.
- * @param {Number} page - The integer number of the page to show.
- **/
+* Function: showPage()
+* Principal function to update the page with the matched students.
+* @param {array of objects} list - The array of students to work with.
+* @param {Number} page - The integer number of the page to show.
+**/
 function showPage(list, page) {
 	let startIndex = (page * 9) - 9;
 	let endIndex = page * 9;
@@ -52,14 +53,14 @@ function showPage(list, page) {
               <span class="date"> Joined ${list[i].registered.date} </span>
             </div>
         </li>
-        `);
+      `);
 		}
 	}
- /**
- * Search feature handler:
- * filtering the data array with the value of the input field (case insensitive)
- * using the "input" event, tracking in realtime the search.
- **/
+  /*
+  * Search filter input feature handler:
+  * filtering the data array with the value of the input field (case insensitive)
+  * using the "input" event, tracking in realtime the search.
+  */
   const inputElem = document.getElementById("search");
   inputElem.addEventListener("input", (e) => {
   	let new_page = [];
@@ -74,16 +75,23 @@ function showPage(list, page) {
   	showPage(new_page, 1);
   	addPagination(new_page);
   });
-
+  /*
+  * Search button click event handler:
+  * evaluates the result of the search and prints how many
+  * students were found or No results if no match.
+  * CSS inline just for readability of the custom feature.
+  */
   document.querySelector("#button").addEventListener("click", (e) => {
     if (list.length === 0) {
       studentsFound.innerHTML = "No results found";
     } else {
       studentsFound.innerHTML = `${list.length} students found.`;
     }
-  	studentsFound.style.margin = "6px";
+  	studentsFound.style.margin = "8px";
   });
 }
+
+
 /**
 * Function: addPagination()
 * Secondary function that adds the functionality for the paging buttons.
@@ -114,10 +122,11 @@ function addPagination(list) {
 	});
 }
 
-// Call functions to display the initial page with the first
-// 9 students on the list.
+
+// Call functions to display the initial page with the first 9 students.
 showPage(data, 1);
 addPagination(data);
+
 
 // theEnd.
 // have a nice coding day! ;) @doc
