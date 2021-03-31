@@ -1,5 +1,5 @@
 ## Data Pagination and Filtering
-Second project of my **techDegree**. This project uses a student database in the format of an
+Second project of my **Full Stack Java Script techDegree**. This project uses a student database in the format of an
 array of objects datastructure, and implements **paging**, **filtering** in a cool search feature.
 
 ## Build status
@@ -18,7 +18,7 @@ uses MATH built-in JS.
 
 
 ## Credits
-TeamTreeHouse Full Stack JavaScript techDegree.
+TreeHouse Full Stack JavaScript techDegree.
 HTML & CSS property of TeamTreeHouse.
 
 
