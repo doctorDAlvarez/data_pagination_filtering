@@ -45,7 +45,7 @@ function showPage(list, page) {
 				`
         <li class="student-item cf">
             <div class="student-details">
-                <img class="avatar" src=" ${list[i].picture.large} ">
+                <img class="avatar" src=" ${list[i].picture.large} " alt="Student Picture">
                 <h3> ${list[i].name.first} ${list[i].name.last} </h3>
                 <span class="email"> ${list[i].email} </span>
             </div>
