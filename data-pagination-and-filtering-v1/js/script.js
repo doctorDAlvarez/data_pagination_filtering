@@ -45,7 +45,7 @@ function showPage(list, page) {
 				`
         <li class="student-item cf">
             <div class="student-details">
-                <img class="avatar" src=" ${list[i].picture.thumbnail} ">
+                <img class="avatar" src=" ${list[i].picture.large} ">
                 <h3> ${list[i].name.first} ${list[i].name.last} </h3>
                 <span class="email"> ${list[i].email} </span>
             </div>
@@ -76,19 +76,17 @@ function showPage(list, page) {
   	addPagination(new_page);
   });
   /*
-  * Search button click event handler:
+  * Logic for the search results (dynamically):
   * evaluates the result of the search and prints how many
   * students were found or No results if no match.
   * CSS inline just for readability of the custom feature.
   */
-  document.querySelector("#button").addEventListener("click", (e) => {
-    if (list.length === 0) {
-      studentsFound.innerHTML = "No results found";
-    } else {
-      studentsFound.innerHTML = `${list.length} students found.`;
-    }
-  	studentsFound.style.margin = "8px";
-  });
+  if (list.length === 0) {
+    studentsFound.innerHTML = "No results found";
+  } else {
+    studentsFound.innerHTML = `${list.length} students found.`;
+  }
+  studentsFound.style.margin = "8px";
 }
 
 
