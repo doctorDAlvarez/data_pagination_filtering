@@ -63,7 +63,7 @@ function showPage(list, page) {
   */
   if (list.length === 0) {
     studentsFound.innerHTML = "No results found";
-  } else {
+  } else if (list.length !== data.length) {
     studentsFound.innerHTML = `${list.length} students found.`;
   }
   studentsFound.style.margin = "8px";
