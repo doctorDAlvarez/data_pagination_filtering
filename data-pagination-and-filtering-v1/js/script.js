@@ -27,7 +27,6 @@ let html_search = `
 // adding the new search feature to the header.
 header.insertAdjacentHTML("beforeend", html_search);
 
-
 /**
 * Function: showPage()
 * Principal function to update the page with the matched students.
@@ -57,25 +56,6 @@ function showPage(list, page) {
 		}
 	}
   /*
-  * Search filter input feature handler:
-  * filtering the data array with the value of the input field (case insensitive)
-  * using the "input" event, tracking in realtime the search.
-  */
-  const inputElem = document.getElementById("search");
-  inputElem.addEventListener("input", (e) => {
-  	let new_page = [];
-  	for (let i = 0; i < data.length; i++) {
-  		firstName = data[i].name.first.toUpperCase();
-  		lastName = data[i].name.last.toUpperCase();
-  		inputValue = inputElem.value.toUpperCase();
-  		if (firstName.includes(inputValue) || lastName.includes(inputValue)) {
-  			new_page.push(data[i]);
-  		}
-  	}
-  	showPage(new_page, 1);
-  	addPagination(new_page);
-  });
-  /*
   * Logic for the search results (dynamically):
   * evaluates the result of the search and prints how many
   * students were found or No results if no match.
@@ -88,8 +68,25 @@ function showPage(list, page) {
   }
   studentsFound.style.margin = "8px";
 }
-
-
+/*
+* Search filter input feature handler:
+* filtering the data array with the value of the input field (case insensitive)
+* using the "input" event, tracking in realtime the search.
+*/
+const inputElem = document.getElementById("search");
+inputElem.addEventListener("input", (e) => {
+  let new_page = [];
+  for (let i = 0; i < data.length; i++) {
+    firstName = data[i].name.first.toUpperCase();
+    lastName = data[i].name.last.toUpperCase();
+    inputValue = inputElem.value.toUpperCase();
+    if (firstName.includes(inputValue) || lastName.includes(inputValue)) {
+      new_page.push(data[i]);
+    }
+  }
+  showPage(new_page, 1);
+  addPagination(new_page);
+});
 /**
 * Function: addPagination()
 * Secondary function that adds the functionality for the paging buttons.
@@ -108,7 +105,7 @@ function addPagination(list) {
     `);
 	}
   if (ul.firstElementChild) {
-		ul.firstElementChild.className = "active";
+		ul.firstElementChild.firstElementChild.className = "active";
 	}
 	ul.addEventListener("click", function(e) {         //adding paging handler
 		if (e.target.tagName === "BUTTON") {
@@ -120,11 +117,9 @@ function addPagination(list) {
 	});
 }
 
-
 // Call functions to display the initial page with the first 9 students.
 showPage(data, 1);
 addPagination(data);
-
 
 // theEnd.
 // have a nice coding day! ;) @doc
